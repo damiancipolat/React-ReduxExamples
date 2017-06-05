@@ -1,4 +1,4 @@
-# Ejemplo React con Scafolding.
+# Ejemplo buscador de paises.
 
 Ejemplo usando Webpack y babel.
 
