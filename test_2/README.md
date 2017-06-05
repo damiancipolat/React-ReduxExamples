@@ -14,3 +14,5 @@ Para transpilar toda la aplicación:
 ```sh
 $ ./node_modules/webpack/bin/webpack.js
 ```
+
+El codígo de este proyecto es bastante sencillo, muestra como realizar iteraciones y usar componentes ademas de trabajar usando ES6.
