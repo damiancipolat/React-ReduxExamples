@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>thenewboston</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="content"></div>
+    <script type="text/jsx">
+    	//https://www.pmg.com/blog/react-two-way-data-binding/
+    	//https://www.tutorialspoint.com/reactjs/
+    	//https://medium.com/@thejenniekim/two-way-data-binding-and-form-validation-in-react-9d0b15123176
+    	//https://scotch.io/tutorials/creating-a-simple-shopping-cart-with-react-js-and-flux
+        let BuckysComponent = React.createClass(
+        {
+        	test:function()
+        	{
+        		alert('Opa opa opa '+this.props.food);
+        	},
+            render: function()
+            {
+                return (
+                       <div>
+                            <h3>{this.props.user} / {this.props.food}</h3>
+                            <div>{this.props.children}</div>
+                            <button onClick={this.test}>CLICK</button>
+                        </div>
+                );
+            }
+        });
+
+        let Comment = React.createClass(
+        {
+        	//Seteo todos los valores que se guardaran en el estado interno del componente, para bindear con el front.
+        	getInitialState: function()
+        	{
+        		return {texto: "nada"};
+    		},
+			changeTest:function(e)
+			{
+				//Seteo un estado.
+				this.setState({texto:e.target.value});
+			},       	
+        	render:function()
+        	{
+        		return (<div>
+        					<b>COMENTARIOS</b><br/>{this.props.nombre}<br/>
+        					<input type="text" onChange={this.changeTest}/>
+        					<p>{this.state.texto}</p>
+        				</div>);
+        	}
+        });
+
+        React.render(<div>
+                    	<BuckysComponent user="Bucky" food="pizza">AAAAAAA AAAAA</BuckysComponent>
+                    	<BuckysComponent user="Emily" food="burger">BBBBBBBB</BuckysComponent>
+                    	<BuckysComponent user="John"  food="tomatoes">CCCCCCC</BuckysComponent>                    	
+                    	<Comment nombre="damian"></Comment>
+                	 </div>, document.getElementById('content'));
+    </script>
+</body>
+</html>
