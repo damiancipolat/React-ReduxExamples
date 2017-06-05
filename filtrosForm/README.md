@@ -1,4 +1,4 @@
-# Ejemplo buscador de paises.
+# Ejemplo Filtro de Precios.
 
 Ejemplo usando Webpack y babel.
 
@@ -14,3 +14,5 @@ Para transpilar toda la aplicación:
 ```sh
 $ ./node_modules/webpack/bin/webpack.js
 ```
+
+Este script es para probar la comunicacón entre componentes usando React JS y Css.
