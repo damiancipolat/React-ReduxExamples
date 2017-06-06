@@ -103,8 +103,10 @@
 		}, {
 			key: 'getListado',
 			value: function getListado(elem) {
-				this.lista = elem;
-				this.sendPricesChilds();
+				if (elem != null) {
+					this.lista = elem;
+					this.sendPricesChilds();
+				}
 			}
 		}, {
 			key: 'render',
@@ -22066,7 +22068,7 @@
 
 				//Lista de precios filtrados.
 				var filterPrices = this.precios.filter(function (price) {
-					return price >= min && max <= price;
+					return price >= min && price <= max;
 				});
 
 				//Seteo el estado con los nuevos precios.
@@ -22097,7 +22099,7 @@
 					)
 				);else return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'listaPrecios' },
 					_react2.default.createElement(
 						'b',
 						null,

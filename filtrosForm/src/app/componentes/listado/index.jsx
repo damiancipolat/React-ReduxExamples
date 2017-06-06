@@ -24,7 +24,7 @@ class Listado extends React.Component
 
 		//Lista de precios filtrados.
 		let filterPrices = this.precios.filter((price)=>{
-			return ((price>=min)&&(max<=price));
+			return ((price>=min)&&(price<=max));
 		});
 
 		//Seteo el estado con los nuevos precios.
@@ -45,7 +45,9 @@ class Listado extends React.Component
 						</ul>
 			      	</div>);
 		else
-			return (<div><b>No se encontraron precios.</b></div>);
+			return (<div className="listaPrecios">
+						<b>No se encontraron precios.</b>
+					</div>);
 	}
 }
 

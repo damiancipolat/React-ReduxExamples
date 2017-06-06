@@ -31,8 +31,11 @@ class App extends React.Component{
 
 	getListado(elem)
 	{
-		this.lista = elem;
-		this.sendPricesChilds();
+		if (elem!=null)
+		{
+			this.lista = elem;
+			this.sendPricesChilds();		
+		}
 	}
 
 	render()
