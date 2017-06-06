@@ -15,4 +15,4 @@ Para transpilar toda la aplicación:
 $ ./node_modules/webpack/bin/webpack.js
 ```
 
-Este script es para probar la comunicacón entre componentes usando React JS y Css.
+Este ejemplo es para probar la comunicación entre componentes de padre a hijo y de hijo a padre, ademas del uso de CSS.
