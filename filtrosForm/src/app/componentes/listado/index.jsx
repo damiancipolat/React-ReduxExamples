@@ -1,29 +1,43 @@
 import React      from 'react';
 import { render } from 'react-dom';
-//import styles     from './style.css';
 
 class Listado extends React.Component
 {
 	constructor(props)
 	{
 		super(props);
-		this.state = {precios:props.priceArray};
-		//this.state={precioMin:0,precioMax:1000};
+/*
+		//Lista de precios.
+		this.precios     = [100,10,2000,300,400,50,60,800,126,3000,150,789,900,2000,4000,10000,20000,300,15,6,2,135];
+		
+		//Lista de precios filtrados.
+		let filterPrices = this.precios.filter((price)=>{
+			return ((price>=this.props.precios.min)&&(this.props.precios.max<=price));
+		});
 
-		//this.updateMinPrices = this.updateMinPrices.bind(this);
+		//Estado con la lista de precios.
+		this.state = {prices:filterPrices};
+
+		console.log(1);
+		*/
+		this.state = {min:this.props.precios.min};
 	}
+
+	componentWillReceiveProps(nextProps)
+	{
+		console.log(nextProps);
+		this.setState({ min: nextProps.min });  
+ 	}
 
 	render()
 	{
+		console.log(this.state.min, 'new data');
+
         return (<div>
-        			<ul>
-	               this.state.precios.map((num)=>{
-	               		<li>{num}</li>
-	               });
-	               </ul>
-               </div>               
+        			AAA {this.state.min}
+        		</div>
         );
 	}
 }
 
-export default Filtros;
+export default Listado;

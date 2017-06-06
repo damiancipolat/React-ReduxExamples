@@ -58,6 +58,10 @@
 
 	var _index2 = _interopRequireDefault(_index);
 
+	var _index3 = __webpack_require__(183);
+
+	var _index4 = _interopRequireDefault(_index3);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -66,66 +70,26 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	//import Listado   from './componentes/listado/index.jsx';
-
-	var Test = function (_React$Component) {
-		_inherits(Test, _React$Component);
-
-		function Test(props) {
-			_classCallCheck(this, Test);
-
-			var _this = _possibleConstructorReturn(this, (Test.__proto__ || Object.getPrototypeOf(Test)).call(this, props));
-
-			_this.state = { valor: props.valor };
-			_this.accion = _this.accion.bind(_this);
-
-			return _this;
-		}
-
-		//Muestro un alert que se provoca cuando se hace click en el boton, pero ejecuta un metodo de un componente padre.
-
-
-		_createClass(Test, [{
-			key: 'accion',
-			value: function accion() {
-				this.props.method();
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					'NUEVO VALOR: ',
-					this.state.valor,
-					_react2.default.createElement(
-						'button',
-						{ onClick: this.accion },
-						'Clickear'
-					)
-				);
-			}
-		}]);
-
-		return Test;
-	}(_react2.default.Component);
-
-	var App = function (_React$Component2) {
-		_inherits(App, _React$Component2);
+	var App = function (_React$Component) {
+		_inherits(App, _React$Component);
 
 		function App() {
 			_classCallCheck(this, App);
 
-			var _this2 = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+			var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
-			_this2.onAlert = _this2.onAlert.bind(_this2);
-			return _this2;
+			_this.extractPrices = _this.extractPrices.bind(_this);
+			_this.state = { valores: { min: 0, max: 10 } };
+			_this.filtros = { min: 0, max: 10 };
+			return _this;
 		}
 
 		_createClass(App, [{
-			key: 'onAlert',
-			value: function onAlert() {
-				alert("te estoy saludando");
+			key: 'extractPrices',
+			value: function extractPrices(minVal, maxVal) {
+				this.filtros.min = minVal;
+				this.filtros.max = maxVal;
+				this.setState({ valores: { min: minVal, max: maxVal } });
 			}
 		}, {
 			key: 'render',
@@ -142,8 +106,15 @@
 							'Buscar precio:'
 						)
 					),
-					_react2.default.createElement(_index2.default, null),
-					_react2.default.createElement(Test, { method: this.onAlert, valor: '777' })
+					_react2.default.createElement(
+						'div',
+						null,
+						_react2.default.createElement(_index2.default, { valores: this.extractPrices }),
+						_react2.default.createElement(_index4.default, { precios: this.state.valores }),
+						this.state.valores.min,
+						' - ',
+						this.state.valores.max
+					)
 				);
 			}
 		}]);
@@ -21943,8 +21914,6 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	//import styles     from './style.css';
-
 	var Filtros = function (_React$Component) {
 		_inherits(Filtros, _React$Component);
 
@@ -21957,52 +21926,65 @@
 
 			_this.updateMinPrices = _this.updateMinPrices.bind(_this);
 			_this.updateMaxPrices = _this.updateMaxPrices.bind(_this);
+			_this.updatePrices = _this.updatePrices.bind(_this);
 			return _this;
 		}
 
 		_createClass(Filtros, [{
+			key: 'updatePrices',
+			value: function updatePrices(e) {
+				this.props.valores(this.state.precioMin, this.state.precioMax);
+			}
+		}, {
 			key: 'updateMinPrices',
 			value: function updateMinPrices(e) {
 				this.setState({ precioMin: e.target.value });
+				this.updatePrices();
 			}
 		}, {
 			key: 'updateMaxPrices',
 			value: function updateMaxPrices(e) {
 				this.setState({ precioMax: e.target.value });
+				this.updatePrices();
 			}
 		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
 					'div',
-					null,
+					{ className: 'filtroBorde' },
 					_react2.default.createElement(
 						'div',
-						null,
+						{ className: 'cuadroCtrl' },
 						_react2.default.createElement(
-							'span',
-							null,
+							'div',
+							{ className: 'txtTitle' },
 							'Precio Minimo:\xA0'
 						),
-						_react2.default.createElement('input', { type: 'number', onChange: this.updateMinPrices, value: this.state.precioMin }),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
 						_react2.default.createElement(
-							'span',
-							null,
+							'div',
+							{ className: 'txtInput' },
+							_react2.default.createElement('input', { type: 'number', onChange: this.updateMinPrices, value: this.state.precioMin })
+						)
+					),
+					_react2.default.createElement(
+						'div',
+						{ className: 'cuadroCtrl' },
+						_react2.default.createElement(
+							'div',
+							{ className: 'txtTitle' },
 							'Precio Maximo:\xA0'
 						),
-						_react2.default.createElement('input', { type: 'number', onChange: this.updateMaxPrices, value: this.state.precioMax }),
-						_react2.default.createElement('br', null),
-						_react2.default.createElement('br', null),
 						_react2.default.createElement(
-							'button',
-							null,
-							'Buscar'
-						),
-						this.state.precioMin,
-						'-',
-						this.state.precioMax
+							'div',
+							{ className: 'txtInput' },
+							_react2.default.createElement('input', { type: 'number', onChange: this.updateMaxPrices, value: this.state.precioMax })
+						)
+					),
+					_react2.default.createElement(
+						'button',
+						{ className: 'btnCtrl' },
+						'Buscar'
 					)
 				);
 			}
@@ -22012,6 +21994,83 @@
 	}(_react2.default.Component);
 
 	exports.default = Filtros;
+
+/***/ }),
+/* 183 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(36);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Listado = function (_React$Component) {
+		_inherits(Listado, _React$Component);
+
+		function Listado(props) {
+			_classCallCheck(this, Listado);
+
+			/*
+	  		//Lista de precios.
+	  		this.precios     = [100,10,2000,300,400,50,60,800,126,3000,150,789,900,2000,4000,10000,20000,300,15,6,2,135];
+	  		
+	  		//Lista de precios filtrados.
+	  		let filterPrices = this.precios.filter((price)=>{
+	  			return ((price>=this.props.precios.min)&&(this.props.precios.max<=price));
+	  		});
+	  
+	  		//Estado con la lista de precios.
+	  		this.state = {prices:filterPrices};
+	  
+	  		console.log(1);
+	  		*/
+			var _this = _possibleConstructorReturn(this, (Listado.__proto__ || Object.getPrototypeOf(Listado)).call(this, props));
+
+			_this.state = { min: _this.props.precios.min };
+			return _this;
+		}
+
+		_createClass(Listado, [{
+			key: 'componentWillReceiveProps',
+			value: function componentWillReceiveProps(nextProps) {
+				console.log(nextProps);
+				this.setState({ min: nextProps.min });
+			}
+		}, {
+			key: 'render',
+			value: function render() {
+				console.log(this.state.min, 'new data');
+
+				return _react2.default.createElement(
+					'div',
+					null,
+					'AAA ',
+					this.state.min
+				);
+			}
+		}]);
+
+		return Listado;
+	}(_react2.default.Component);
+
+	exports.default = Listado;
 
 /***/ })
 /******/ ]);
