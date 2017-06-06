@@ -7,28 +7,34 @@ class Filtros extends React.Component
 	{
 		super(props);
 		
-		this.state = {precioMin:0,precioMax:1000};
+		this.state   = {precioMin:0,precioMax:20000};
+		this.filtros = {min:0,max:20000};
 
 		this.updateMinPrices = this.updateMinPrices.bind(this);
 		this.updateMaxPrices = this.updateMaxPrices.bind(this);
-		this.updatePrices 	 = this.updatePrices.bind(this);		
+		this.sendPrices 	 = this.sendPrices.bind(this);
 	}
-
-	updatePrices(e)
+	
+	componentDidMount()
 	{
-		this.props.valores(this.state.precioMin,this.state.precioMax);
+		this.sendPrices();
 	}
 
 	updateMinPrices(e)
 	{
 		this.setState({precioMin:e.target.value});
-		this.updatePrices();
+		this.filtros.min = e.target.value;
 	}
 
 	updateMaxPrices(e)
 	{
 		this.setState({precioMax:e.target.value});
-		this.updatePrices();
+		this.filtros.max = e.target.value;		
+	}
+
+	sendPrices()
+	{
+		this.props.valores(this.filtros.min,this.filtros.max);		
 	}
 
 	render()
@@ -51,7 +57,7 @@ class Filtros extends React.Component
 	               				<input type="number" onChange={this.updateMaxPrices} value={this.state.precioMax}/>
 	               			</div>
 	               		</div>
-	               		<button className="btnCtrl">
+	               		<button className="btnCtrl" onClick={this.sendPrices}>
 	               			Buscar
 	               		</button>
 	               </div>

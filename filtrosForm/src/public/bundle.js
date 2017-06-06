@@ -79,8 +79,11 @@
 			var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 
 			_this.extractPrices = _this.extractPrices.bind(_this);
-			_this.state = { valores: { min: 0, max: 10 } };
-			_this.filtros = { min: 0, max: 10 };
+			_this.sendPricesChilds = _this.sendPricesChilds.bind(_this);
+			_this.getListado = _this.getListado.bind(_this);
+			_this.state = { valores: { min: 0, max: 20000 } };
+			_this.filtros = { min: 0, max: 0 };
+			_this.lista = null;
 			return _this;
 		}
 
@@ -90,6 +93,18 @@
 				this.filtros.min = minVal;
 				this.filtros.max = maxVal;
 				this.setState({ valores: { min: minVal, max: maxVal } });
+				this.sendPricesChilds();
+			}
+		}, {
+			key: 'sendPricesChilds',
+			value: function sendPricesChilds() {
+				if (this.lista != null) this.lista.filtrarPrecios(this.filtros.min, this.filtros.max);
+			}
+		}, {
+			key: 'getListado',
+			value: function getListado(elem) {
+				this.lista = elem;
+				this.sendPricesChilds();
 			}
 		}, {
 			key: 'render',
@@ -110,10 +125,7 @@
 						'div',
 						null,
 						_react2.default.createElement(_index2.default, { valores: this.extractPrices }),
-						_react2.default.createElement(_index4.default, { precios: this.state.valores }),
-						this.state.valores.min,
-						' - ',
-						this.state.valores.max
+						_react2.default.createElement(_index4.default, { precios: this.getListado })
 					)
 				);
 			}
@@ -21922,30 +21934,36 @@
 
 			var _this = _possibleConstructorReturn(this, (Filtros.__proto__ || Object.getPrototypeOf(Filtros)).call(this, props));
 
-			_this.state = { precioMin: 0, precioMax: 1000 };
+			_this.state = { precioMin: 0, precioMax: 20000 };
+			_this.filtros = { min: 0, max: 20000 };
 
 			_this.updateMinPrices = _this.updateMinPrices.bind(_this);
 			_this.updateMaxPrices = _this.updateMaxPrices.bind(_this);
-			_this.updatePrices = _this.updatePrices.bind(_this);
+			_this.sendPrices = _this.sendPrices.bind(_this);
 			return _this;
 		}
 
 		_createClass(Filtros, [{
-			key: 'updatePrices',
-			value: function updatePrices(e) {
-				this.props.valores(this.state.precioMin, this.state.precioMax);
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				this.sendPrices();
 			}
 		}, {
 			key: 'updateMinPrices',
 			value: function updateMinPrices(e) {
 				this.setState({ precioMin: e.target.value });
-				this.updatePrices();
+				this.filtros.min = e.target.value;
 			}
 		}, {
 			key: 'updateMaxPrices',
 			value: function updateMaxPrices(e) {
 				this.setState({ precioMax: e.target.value });
-				this.updatePrices();
+				this.filtros.max = e.target.value;
+			}
+		}, {
+			key: 'sendPrices',
+			value: function sendPrices() {
+				this.props.valores(this.filtros.min, this.filtros.max);
 			}
 		}, {
 			key: 'render',
@@ -21983,7 +22001,7 @@
 					),
 					_react2.default.createElement(
 						'button',
-						{ className: 'btnCtrl' },
+						{ className: 'btnCtrl', onClick: this.sendPrices },
 						'Buscar'
 					)
 				);
@@ -22027,42 +22045,64 @@
 		function Listado(props) {
 			_classCallCheck(this, Listado);
 
-			/*
-	  		//Lista de precios.
-	  		this.precios     = [100,10,2000,300,400,50,60,800,126,3000,150,789,900,2000,4000,10000,20000,300,15,6,2,135];
-	  		
-	  		//Lista de precios filtrados.
-	  		let filterPrices = this.precios.filter((price)=>{
-	  			return ((price>=this.props.precios.min)&&(this.props.precios.max<=price));
-	  		});
-	  
-	  		//Estado con la lista de precios.
-	  		this.state = {prices:filterPrices};
-	  
-	  		console.log(1);
-	  		*/
+			//Lista de precios.
 			var _this = _possibleConstructorReturn(this, (Listado.__proto__ || Object.getPrototypeOf(Listado)).call(this, props));
 
-			_this.state = { min: _this.props.precios.min };
+			_this.precios = [100, 10, 2000, 300, 400, 50, 60, 800, 126, 3000, 150, 789, 900, 2000, 4000, 10000, 20000, 300, 15, 6, 2, 135];
+
+			//Estado con la lista de precios.
+			_this.state = { prices: [] };
+
+			//Envio el contenido del hijo al padre.
+			_this.props.precios(_this);
 			return _this;
 		}
 
 		_createClass(Listado, [{
-			key: 'componentWillReceiveProps',
-			value: function componentWillReceiveProps(nextProps) {
-				console.log(nextProps);
-				this.setState({ min: nextProps.min });
+			key: 'filtrarPrecios',
+			value: function filtrarPrecios(min, max) {
+				min = parseInt(min);
+				max = parseInt(max);
+
+				//Lista de precios filtrados.
+				var filterPrices = this.precios.filter(function (price) {
+					return price >= min && max <= price;
+				});
+
+				//Seteo el estado con los nuevos precios.
+				this.setState({ prices: filterPrices });
 			}
 		}, {
 			key: 'render',
 			value: function render() {
-				console.log(this.state.min, 'new data');
-
-				return _react2.default.createElement(
+				if (this.state.prices.length > 0) return _react2.default.createElement(
+					'div',
+					{ className: 'listaPrecios' },
+					_react2.default.createElement(
+						'ul',
+						null,
+						this.state.prices.map(function (price, i) {
+							return _react2.default.createElement(
+								'li',
+								{ key: i, className: 'itemPrecios' },
+								'El elemento cuesta - ',
+								_react2.default.createElement(
+									'b',
+									null,
+									'$ ',
+									price
+								)
+							);
+						})
+					)
+				);else return _react2.default.createElement(
 					'div',
 					null,
-					'AAA ',
-					this.state.min
+					_react2.default.createElement(
+						'b',
+						null,
+						'No se encontraron precios.'
+					)
 				);
 			}
 		}]);

@@ -7,9 +7,12 @@ class App extends React.Component{
 	constructor()
 	{
 		super();
-		this.extractPrices  = this.extractPrices.bind(this);
-		this.state     		= {valores:{min:0,max:10}};
-		this.filtros   		= {min:0,max:10};
+		this.extractPrices    = this.extractPrices.bind(this);
+		this.sendPricesChilds = this.sendPricesChilds.bind(this);
+		this.getListado  	  = this.getListado.bind(this);		
+		this.state     		  = {valores:{min:0,max:20000}};
+		this.filtros   		  = {min:0,max:0};
+		this.lista 			  = null;
 	}
 
 	extractPrices(minVal,maxVal)
@@ -17,6 +20,19 @@ class App extends React.Component{
 		this.filtros.min = minVal;
 		this.filtros.max = maxVal;
 		this.setState({valores:{min:minVal,max:maxVal}});
+		this.sendPricesChilds();
+	}
+
+	sendPricesChilds()
+	{
+		if (this.lista!=null)
+			this.lista.filtrarPrecios(this.filtros.min,this.filtros.max);		
+	}
+
+	getListado(elem)
+	{
+		this.lista = elem;
+		this.sendPricesChilds();
 	}
 
 	render()
@@ -26,8 +42,7 @@ class App extends React.Component{
                		<h3><u>Buscar precio:</u></h3>
                		<div>
                			<Filtros valores={this.extractPrices}></Filtros>
-               			<Listado precios={this.state.valores}></Listado>
-               			{this.state.valores.min} - {this.state.valores.max}
+               			<Listado precios={this.getListado}></Listado>
                		</div>
                 </div>
         );
