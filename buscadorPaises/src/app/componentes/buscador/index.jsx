@@ -65,7 +65,7 @@ class Buscador extends React.Component
                		<span><b>Lista de paises</b></span><br/>
                		<span>Escriba el nombre del país para buscarlo</span>
                		<br/><br/>
-               		<input type="text" stlye="padding:5px;" placeholder="Escriba el pais" onChange={this.changeText}/>
+               		<input type="text" placeholder="Escriba el pais" onChange={this.changeText}/>
                		<ul>
                			{paises}
                		</ul>
