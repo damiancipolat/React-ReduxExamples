@@ -1,0 +1,58 @@
+.filtroBorde
+{
+	border:1px solid black;
+	padding:5px;
+	width:300px;
+	float: left;
+}
+
+.cuadroCtrl
+{
+	border-bottom: 1px dotted silver;
+	padding-bottom: 5px;
+}
+
+.txtTitle
+{
+	font-size:14px;
+	font-family: tahoma;
+	padding:3px;
+	text-align: center;
+	background: #c4cfcf;
+	color:black;
+	font-weight: bold;
+}
+
+.txtInput
+{
+	padding:5px;
+}
+
+.txtInput input
+{
+	width: 100%;
+}
+
+.btnCtrl
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding:5px;
+	width: 100%;
+}
+
+.listaPrecios
+{
+	border:1px solid black;
+	float:left;
+	width:400px;
+	margin-left:10px;
+}
+
+.itemPrecios
+{
+	border-bottom: 1px solid red;
+	list-style:none;
+	text-align: left;
+	padding:5px;
+}
