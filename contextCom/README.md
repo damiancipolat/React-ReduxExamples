@@ -1,4 +1,4 @@
-# Ejemplo Filtro de Precios.
+# Ejemplo de Comunicación usando contexto.
 
 Ejemplo usando Webpack y babel.
 
@@ -15,4 +15,4 @@ Para transpilar toda la aplicación:
 $ ./node_modules/webpack/bin/webpack.js
 ```
 
-Este ejemplo es para probar la comunicación entre componentes de padre a hijo y de hijo a padre, ademas del uso de CSS.
+Este ejemplo es para aprender a usar la comunicación de componentes atravez del contexto de ReactJS.
