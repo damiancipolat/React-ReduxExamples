@@ -1,0 +1,46 @@
+.bordeForm
+{
+	padding:5px;
+	border:1px solid black;
+	width: 300px;
+	float:left;
+	margin-right: 10px;
+}
+
+.bordeForm input
+{
+	width: 100%;
+	padding:5px;
+}
+
+.bordeForm span
+{
+	width: 100%;	
+}
+
+.bloqCampos
+{
+	margin-bottom: 10px;
+}
+
+.bloqCampos span
+{
+	display: block;
+	margin-bottom: 5px;
+}
+
+.label
+{
+	background: silver;
+	padding:5px;
+	color:white;
+	font-size:15px;
+	font-family: tahoma;
+	font-weight: bold;
+	text-align: center;
+}
+
+button
+{
+	padding:5px;
+}
