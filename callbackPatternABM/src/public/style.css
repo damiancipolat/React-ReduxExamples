@@ -81,3 +81,13 @@ thead tr
 {
 	text-align: center;
 }
+
+.delBtn
+{
+	background:red;
+	color:white;
+	border:1px solid white;
+	cursor:pointer;
+	padding:7px;
+	cursor:pointer;
+}
