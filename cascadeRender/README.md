@@ -1,4 +1,4 @@
-# Ejemplo de Comunicación usando contexto.
+# Ejemplo para probar Render en cascada.
 
 Ejemplo usando Webpack y babel.
 
@@ -14,5 +14,8 @@ Para transpilar toda la aplicación:
 ```sh
 $ ./node_modules/webpack/bin/webpack.js
 ```
+Este ejemplo es para probar el renderizado en cascada en ReactJS y obtener conclusiones sobre esto.
 
-Este ejemplo es para aprender a usar la comunicación de componentes atravez del contexto de ReactJS.
+## Conclusiones:
+1) React ejecuta el metodo render de todos los componentes.
+2) El constructor de los componentes se ejecuta una sola vez.
