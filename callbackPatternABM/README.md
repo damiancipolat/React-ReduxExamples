@@ -1,4 +1,4 @@
-# Ejemplo de Comunicación usando contexto.
+# Ejemplo de ABM - callbackPattern.
 
 Ejemplo usando Webpack y babel.
 
@@ -15,4 +15,4 @@ Para transpilar toda la aplicación:
 $ ./node_modules/webpack/bin/webpack.js
 ```
 
-Este ejemplo es para aprender a usar la comunicación de componentes atravez del contexto de ReactJS.
+En este ejemplo implemento una app de ABM de usuarios, se utiliza como forma de comunicación pattern callback.
