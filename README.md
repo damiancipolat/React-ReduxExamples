@@ -7,3 +7,5 @@
 - filtrosForm: Ejemplo para probar la comunicación entre componentes en ReactJs.
 - contextCom: Ejemplo para usar comunicación entre componentes usando el objeto contexto de React.
 - callbackPatternABM: Ejemplo de ABM usando ReactJS, se implementa pattern callback para comunicación entre componentes.
+- cascadeRender: Simple ejemplo para sacar conclusiones sobre la forma de trabajo de reactjs.
+- uiStateChanges: Listado de ejemplos de interacciónes de componentes contra el state.
