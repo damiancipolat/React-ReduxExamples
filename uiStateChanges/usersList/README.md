@@ -1,5 +1,7 @@
 # Ejemplo para Interacción de componentes y estado.
 
+## Lista de usuarios
+
 Ejemplo usando Webpack y babel.
 
 ### Instalación:
