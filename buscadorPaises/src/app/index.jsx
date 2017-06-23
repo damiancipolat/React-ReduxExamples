@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Buscador   from './componentes/Buscador/index.jsx';
+import Buscador   from './componentes/buscador/index.jsx';
 
 class App extends React.Component{
 	constructor(){
