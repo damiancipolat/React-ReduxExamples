@@ -62,6 +62,10 @@
 
 	var _time2 = _interopRequireDefault(_time);
 
+	var _currency = __webpack_require__(187);
+
+	var _currency2 = _interopRequireDefault(_currency);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -94,8 +98,19 @@
 	            'Escriba la hora en formato: HH:MM'
 	          ),
 	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null),
 	          _react2.default.createElement(_time2.default, null)
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'b',
+	            null,
+	            'Escriba el dinero:'
+	          ),
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement(_currency2.default, { symbol: '$' })
 	        )
 	      );
 	    }
@@ -22224,7 +22239,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (Time.__proto__ || Object.getPrototypeOf(Time)).call(this, props));
 
-	    _this.state = { value: '' };
+	    _this.state = { value: '', txtval: '' };
 	    _this.onChange = _this.onChange.bind(_this);
 
 	    return _this;
@@ -22279,16 +22294,21 @@
 
 	      // Traigo el texto del campo.
 	      var valor = e.target.value.replace(':', '');
+	      var maskedVal = null;
 
-	      // Si cumple el formato.
+	      // Si cumple el formato, aplico la mascara.
 	      if (this.isTimeFormat(valor) && (valor.length == 4 || valor.length == 3)) {
 
 	        // Actualizo el estado y aplico la mascara.
-	        valor = this.maskTime(valor);
-	        this.setState({ value: valor });
+	        maskedVal = this.maskTime(valor);
+	        this.setState({ value: maskedVal });
 	      }
 
-	      e.target.value = valor;
+	      //Si es numerico no permito escribirlo.
+	      if (!isNaN(valor) && valor.length <= 4) {
+	        e.target.value = maskedVal != null ? maskedVal : valor;
+	        this.setState({ txtval: e.target.value });
+	      } else e.target.value = this.state.txtval;
 	    }
 	  }, {
 	    key: 'render',
@@ -22301,6 +22321,99 @@
 	}(_react2.default.Component);
 
 	module.exports = Time;
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _propTypes = __webpack_require__(37);
+
+	var _propTypes2 = _interopRequireDefault(_propTypes);
+
+	var _reactDom = __webpack_require__(39);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Currency = function (_React$Component) {
+	  _inherits(Currency, _React$Component);
+
+	  function Currency(props) {
+	    _classCallCheck(this, Currency);
+
+	    var _this = _possibleConstructorReturn(this, (Currency.__proto__ || Object.getPrototypeOf(Currency)).call(this, props));
+
+	    _this.state = { value: '' };
+	    _this.onChange = _this.onChange.bind(_this);
+
+	    return _this;
+	  }
+
+	  // Revisa si el valor numerico sea en pto flotante.
+
+
+	  _createClass(Currency, [{
+	    key: 'isFloat',
+	    value: function isFloat(n) {
+	      return Number(n) === n && n % 1 !== 0;
+	    }
+
+	    // Traigo la parte decimal del numero.
+
+	  }, {
+	    key: 'decimalOk',
+	    value: function decimalOk(num) {
+
+	      // Traigo la posición del punto.
+	      var ix = num.indexOf('.');
+
+	      //Si esta escrito el punto.
+	      if (ix >= 0) return num.substring(ix + 1, num.length).length <= 2;else return false;
+	    }
+
+	    // Reviso si el texto ingresado es numerico, pto flotante y de 2 decimales.
+
+	  }, {
+	    key: 'isCurrencyFormat',
+	    value: function isCurrencyFormat(val) {
+	      return !isNaN(val) || this.isFloat(val);
+	    }
+
+	    // Cada vez que se escribe.
+
+	  }, {
+	    key: 'onChange',
+	    value: function onChange(e) {
+
+	      // Traigo el texto del campo.
+	      console.log(this.isCurrencyFormat(e.target.value), 'float', this.decimalOk(e.target.value));
+
+	      //e.target.value = valor;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement('input', { type: 'text', onChange: this.onChange, placeholder: 'NNNN.NN' });
+	    }
+	  }]);
+
+	  return Currency;
+	}(_react2.default.Component);
+
+	module.exports = Currency;
 
 /***/ })
 /******/ ]);
