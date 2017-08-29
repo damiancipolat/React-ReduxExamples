@@ -1,6 +1,6 @@
-# Ejemplo para Interacción de componentes y estado.
+# INPUT CONTROL.
 
-## Animación de menu
+## Controles del tipo <input type="tex"> con diferentes formatos.
 
 Ejemplo usando Webpack y babel.
 
