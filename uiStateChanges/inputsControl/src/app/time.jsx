@@ -7,7 +7,7 @@ class Time extends React.Component{
   constructor(props){
 
     super(props);
-    this.state    = {value:''};
+    this.state    = {value:'',txtval:''};
     this.onChange = this.onChange.bind(this);
 
   }
@@ -52,18 +52,25 @@ class Time extends React.Component{
   onChange(e){
 
     // Traigo el texto del campo.
-    let valor = e.target.value.replace(':','');
+    let valor     = e.target.value.replace(':','');
+    let maskedVal = null;
 
-    // Si cumple el formato.
+    // Si cumple el formato, aplico la mascara.
     if ((this.isTimeFormat(valor))&&((valor.length==4)||(valor.length==3))){
 
       // Actualizo el estado y aplico la mascara.
-      valor = this.maskTime(valor);
-      this.setState({value:valor});
-
+      maskedVal = this.maskTime(valor);
+      this.setState({value:maskedVal});
+      
     }
 
-    e.target.value = valor;
+    //Si es numerico no permito escribirlo.
+    if ((!isNaN(valor))&&(valor.length<=4)){
+      e.target.value = (maskedVal!=null)?maskedVal:valor;
+      this.setState({txtval:e.target.value});
+    }
+    else
+      e.target.value = this.state.txtval;    
 
   }
 
