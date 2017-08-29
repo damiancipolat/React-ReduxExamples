@@ -1,6 +1,4 @@
-# INPUT CONTROL.
-
-## Controles del tipo <input type="tex"> con diferentes formatos.
+## Controles del tipo input=text de HTML con diferentes formatos.
 
 Ejemplo usando Webpack y babel.
 
