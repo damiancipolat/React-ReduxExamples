@@ -2,6 +2,9 @@
 
 Ejemplo usando Webpack y babel.
 
+### Componentes:
+- time.jsx: componente de horas y minutos.
+
 ### Instalación:
 
 Para descargar todos los modulos adicionales:
