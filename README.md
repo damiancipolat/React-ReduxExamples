@@ -1,5 +1,5 @@
 # ReactJSExamples
-[!Solid](http://blog-assets.risingstack.com/2016/Jan/react_best_practices-1453211146748.png)
+[!solid](http://blog-assets.risingstack.com/2016/Jan/react_best_practices-1453211146748.png)
 
 ## Lista de ejemplos:
 - test_1: Ejemplo simple de app react haciendo databinding con input text.
