@@ -1,7 +1,7 @@
-# React & Redux - Examples
+# React & Redux - Ejemplos
 ![N|Solid](http://richcostello.github.io/am1port/assets/images/content/react_redux_logo.png)
 
-## React - ejemplos:
+## React - Ejemplos:
 - test_1: Ejemplo simple de app react haciendo databinding con input text.
 - test_2: Ejemplo de app react, para hacer databinding pero un scafolding más completo y usando ES6.
 - buscadorPaises: Ejemplo de un componente de autocompletar.
