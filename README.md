@@ -12,5 +12,5 @@
 - uiStateChanges: Listado de ejemplos de interacciónes de componentes contra el state.
 
 ## React - Redux - Ejemplos:
-- Basico 1: Ejemplo simple de crear un contador usando react - componentes con clases.
-- Basico 2: Ejemplo simple de crear un contador usando react - pure components.
+- Redux_counter: Ejemplo simple de crear un contador usando react - componentes con clases.
+- Redux_counter_pure_components: Ejemplo simple de crear un contador usando react - pure components.
