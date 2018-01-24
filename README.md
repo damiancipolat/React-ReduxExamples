@@ -16,4 +16,3 @@
 - Redux_counter_pure_components: Ejemplo simple de crear un contador usando react - pure components.
 - Redux_search: Ejemplo de crear un buscador y listado con reactredux.
 - Redux_portal: Ejemplo de usar redux en un sitio de tipo portal que tiene varias pantallas.
-- 
