@@ -1,4 +1,4 @@
-# Ejemplo buscador de paises.
+# Ejemplo buscador de paises y Redux.
 
 Ejemplo usando Webpack y babel.
 
