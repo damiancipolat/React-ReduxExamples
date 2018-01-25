@@ -1,4 +1,4 @@
-# Ejemplo buscador de paises.
+# Ejemplo contadores.
 
 Ejemplo usando Webpack y babel.
 

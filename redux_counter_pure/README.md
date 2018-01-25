@@ -1,4 +1,4 @@
-# Ejemplo buscador de paises.
+# Ejemplo contadores.
 
 Ejemplo usando Webpack y babel.
 
@@ -12,5 +12,5 @@ Los archivos con codigo fuente estan dentro de la carpeta ./src/
 
 Para transpilar toda la aplicación:
 ```sh
-$ ./node_modules/webpack/bin/webpack.js
+$ npm run bundle
 ```
