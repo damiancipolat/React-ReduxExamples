@@ -36,11 +36,10 @@ const Counter = ({value, clickSumar, clickRestar})=>{
 const render = () => {
 
   ReactDOM.render(
-    <Counter  value={store.getState()} 
-          clickSumar={ ()=> store.dispatch({type: 'sumar'}) } 
-          clickRestar={ ()=> store.dispatch({type: 'restar'}) }/>
-    ,
-    document.getElementById('app')
+    <Counter  value       = {store.getState()} 
+              clickSumar  = {()=> store.dispatch({type: 'sumar'})} 
+              clickRestar = {()=> store.dispatch({type: 'restar'})}/>
+    ,document.getElementById('app')
   );
 
 };
