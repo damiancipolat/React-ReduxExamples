@@ -1,4 +1,4 @@
-# Ejemplo buscador de paises.
+# Ejemplo React & React-Router & Redux.
 
 Ejemplo usando Webpack y babel.
 
@@ -10,7 +10,10 @@ $ npm install
 ```
 Los archivos con codigo fuente estan dentro de la carpeta ./src/
 
-Para transpilar toda la aplicación:
+Para transpilar toda la aplicación y ejecutar server de desarrollo de webpack:
 ```sh
-$ ./node_modules/webpack/bin/webpack.js
+$ npm start
 ```
+
+Luego entrar a:
+http://127.0.0.1:8080
