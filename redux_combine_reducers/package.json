@@ -1,0 +1,29 @@
+{
+  "name": "react-test",
+  "version": "1.0.0",
+  "description": "Combine reducers",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node node_modules/webpack-dev-server/bin/webpack-dev-server.js --content-base ./src/public"
+  },
+  "author": "Damian Cipolat",
+  "license": "ISC",
+  "dependencies": {
+    "babel-loader": "*",
+    "babel-preset-es2015": "*",
+    "babel-preset-react": "*",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "*",
+    "express": "*",
+    "react": "*",
+    "react-dom": "*",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.8",
+    "redux": "*",
+    "webpack": "*",
+    "webpack-dev-server": "^2.9.4"
+  }
+}
